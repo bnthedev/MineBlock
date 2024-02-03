@@ -1,0 +1,7 @@
+name: MineBlock
+version: '1.0-SNAPSHOT'
+main: me.bnthedev.Main
+api-version: 1.20
+commands:
+  mineblock:
+    permission: mineblock.admin
