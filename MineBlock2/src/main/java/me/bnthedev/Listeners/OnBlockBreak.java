@@ -56,12 +56,15 @@ public class OnBlockBreak implements Listener {
             } else {
                 plugin.getConfig().set("mineblocks." + key + ".block", block.getType().name());
                 for (String playerName : plugin.getConfig().getConfigurationSection("mineblocks." + key + ".playerpoints").getKeys(false)) {
-                    int i = plugin.getConfig().getInt("mineblocks." + key + ".playerpoints." + playerName);
-                    plugin.getConfig().set("mineblocks." + key + ".playerpoints." + playerName, 0);
-                    Player player = Bukkit.getPlayerExact(playerName);
-                    ItemStack rewardItem = new ItemStack(Material.SUNFLOWER, i);
-                    player.getInventory().addItem(rewardItem);
-                    player.sendMessage(plugin.getMessage("messages.reward", key));
+                    if (Bukkit.getServer().getPlayer(playerName) != null){
+                        int i = plugin.getConfig().getInt("mineblocks." + key + ".playerpoints." + playerName);
+                        plugin.getConfig().set("mineblocks." + key + ".playerpoints." + playerName, 0);
+                        Player player = Bukkit.getPlayerExact(playerName);
+                        ItemStack rewardItem = new ItemStack(Material.SUNFLOWER, i);
+                        player.getInventory().addItem(rewardItem);
+                        player.sendMessage(plugin.getMessage("messages.reward", key));
+                    }
+
 
 
                 }
